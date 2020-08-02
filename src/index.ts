@@ -33,9 +33,13 @@ async function request() {
 }
 
 async function timed() {
-	await request();
+	try {
+		await request();
+	} catch (err) {
+		console.log(err);
+	}
 
-	const timeToNext = Math.floor(Math.random() * Math.floor(300000));
+	const timeToNext = Math.floor(Math.random() * Math.floor(100000));
 	console.log(`Request performed. Next in ${Duration.toNow(Date.now() + timeToNext)}`);
 	await sleep(timeToNext);
 
